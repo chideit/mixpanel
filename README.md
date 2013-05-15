@@ -1,7 +1,28 @@
 mixpanel
 ========
+Python API wrapper for mixpanel. 
+This will allow you to call many of the methods that you can call on mixpanel via the JS API, but from python. 
+This does not provide a queueing mechanism to reduce requests. For that, you can use *celery*. 
 
-Python API wrapper for mixpanel
+Depends on the *requests* library.
+
+Based on the specs from the mixpanel docs:
+- [Http Specs](https://mixpanel.com/docs/api-documentation/http-specification-insert-data)
+- [People Http Specs](https://mixpanel.com/docs/people-analytics/people-http-specification-insert-data)
+
+The following methods are implemented:
+- *track* - allows you to perform the standard event tracking.
+- *alias* - allows you to create an alias for a user's distinct_id
+- *track_import* - the same as *track*, but allows you to specify a historic time parameter. This hits a different endpoint on mixpanel.
+
+People based methods are as follows:
+- *set* - sets one or many properties on the user profile.
+- *set_once* - sets only the list of properties on the profile that aren't already defined.
+- *add* - adds to a numeric property on the user profile (e.g. adding to lifetime_value or num_actions_performed)
+- *append* - appends an item to a list property on the user profile.
+- *track_charge* - convenience method which appends a charge to the profile's list of charges (for revenue tracking).
+- *clear_charges* - convenience method which sets the transaction list to []
+- *delete_user* - removes the user profile
 
 ### Sample Usage:
 
